@@ -1,0 +1,28 @@
+{
+  "name": "validator",
+  "version": "0.0.0",
+  "description": "",
+  "main": "avalon.validator.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "karma": "^0.12.23",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "*",
+    "karma-doc-reporter": "0.0.1",
+    "karma-firefox-launcher": "*",
+    "karma-htmlfile-reporter": "^0.1.2",
+    "karma-ie-launcher": "*",
+    "karma-jasmine": "*",
+    "karma-junit-reporter": "*",
+    "karma-opera-launcher": "*",
+    "zeparser": "0.0.7"
+  }
+}
