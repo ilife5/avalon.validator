@@ -1,6 +1,20 @@
+var rh5control = /^email|url|number|range|date|month|week|time|color$/
+
+//判断是否有某属性节点
+var hasAttribute = document.documentElement.hasAttribute ? function(el, attr) {
+    return el.hasAttribute(attr)
+} : function(el, attr) {//IE67
+    var outer = el.outerHTML, part = outer.slice(0, outer.search(/\/?['"]?>(?![^<]*<['"])/));
+    return new RegExp("\\s" + attr + "\\b", "i").test(part);
+}
+
 //判断是否为计算表达式
 function isExpression(expression) {
     return avalon.type(expression) === "array" && expression.length > 1
+}
+
+function getElementValue() {
+
 }
 
 //判断expression的类型
@@ -27,7 +41,7 @@ function parsePattern(pattern) {
                 message: "没有找到相应的pattern：" + pattern.name
             })
         } else {
-            result = validatorPattern.validate.call(this, pattern.value)
+            result = validatorPattern.validate.call(this, getElementValue(this), pattern.value)
 
             if(Deferred.isPromise(result)) {
                 result.then(function(result) {
@@ -72,6 +86,52 @@ function parseExpression(expressions) {
     }
 
     return dfd.promise
+}
+
+/**
+ * 对表单控件进行验证
+ * 首先对表单元素的可验证性做区分，disabled状态的控件不予验证
+ * @param control
+ * @param form
+ */
+function validate(control, form) {
+    //判断控件的验证性
+    if(control.disabled) {
+        return
+    }
+
+    var $control = avalon(control),
+        required = hasAttribute(control, "required"),
+        pattern = $control.attr("required"),
+        type
+
+    if(control.tagName.toLowerCase() === "input" && rh5control.test(control.type)) {
+        type = control.type
+    }
+
+    //拼装pattern
+    //检测元素是否有required属性
+    //如果有required属性，则添加required pattern
+    //如果没有required属性，则添加empty pattern
+
+
+    //type为submit reset file slider以及image元素没有验证性
+    //pattern的获取顺序为required属性 --> type --> pattern
+    switch(control.tagName.toLowerCase()) {
+        case "input":
+
+            //如果为h5新增的控件，email|url|number|range|date|month|week|time|color，将该
+            if(rh5control.test(control.type)) {
+
+            }
+            break;
+        case "":
+            break;
+    }
+    //调用语法分析器对控件的pattern进行分析
+    //调用语义解析器对语法进行执行，生成promise对象
+    return parseExpression(parser.parse(control.getAttribute("pattern")))
+
 }
 
 //判断是否为表达式

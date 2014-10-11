@@ -9,20 +9,20 @@ var alpha = /^[a-zA-Z]+$/
 avalon.validatorPattern = {
     required: {//不能为空
         message : "请填写此字段" ,
-        validate : function() {
-            return this.value !== ""
+        validate : function(value) {
+            return value !== ""
         }
     },
     empty: {
         message : "允许为空" ,
-        validate : function() {
-            return this.value === ""
+        validate : function(value) {
+            return value === ""
         }
     },
     numeric: {
         message : "请输入数值",
-        validate : function() {
-            return numeric.test( this.value )
+        validate : function(value) {
+            return numeric.test( value )
         }
     }
 }

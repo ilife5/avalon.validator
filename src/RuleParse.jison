@@ -35,6 +35,7 @@ PATTERN
         : RULES                                 {$$ = $1}
         | '(' PATTERN ')' DOP '(' PATTERN ')'   {$$ = [$2, $4, $6]}
         | NOT '(' PATTERN ')'                   {$$ = [$1, $3]}
+        | '(' PATTERN ')'                       {$$ = $2}
         ;
 RULES
         : RULE              {$$ = $1}

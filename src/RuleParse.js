@@ -77,7 +77,7 @@ var parser = {trace: function trace() { },
 yy: {},
 symbols_: {"error":2,"expressions":3,"PATTERN":4,"EOF":5,"RULES":6,"(":7,")":8,"DOP":9,"NOT":10,"RULE":11,"RULENAME":12,"ARGS":13,"AND":14,"OR":15,"$accept":0,"$end":1},
 terminals_: {2:"error",5:"EOF",7:"(",8:")",10:"NOT",12:"RULENAME",13:"ARGS",14:"AND",15:"OR"},
-productions_: [0,[3,2],[4,1],[4,7],[4,4],[6,1],[6,3],[11,1],[11,2],[11,2],[9,1],[9,1]],
+productions_: [0,[3,2],[4,1],[4,7],[4,4],[4,3],[6,1],[6,3],[11,1],[11,2],[11,2],[9,1],[9,1]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -86,7 +86,7 @@ switch (yystate) {
 case 1:
 return $$[$0-1];
 break;
-case 2: case 5:
+case 2: case 6:
 this.$ = $$[$0]
 break;
 case 3:
@@ -95,21 +95,24 @@ break;
 case 4:
 this.$ = [$$[$0-3], $$[$0-1]]
 break;
-case 6:
-this.$ = [$$[$0-2], $$[$0-1], $$[$0]]
+case 5:
+this.$ = $$[$0-1]
 break;
 case 7:
-this.$ = {name:$$[$0]}
+this.$ = [$$[$0-2], $$[$0-1], $$[$0]]
 break;
 case 8:
-this.$ = {name:$$[$0-1], value:$$[$0].slice(0,$$[$0].length-1).slice(1)}
+this.$ = {name:$$[$0]}
 break;
 case 9:
+this.$ = {name:$$[$0-1], value:$$[$0].slice(0,$$[$0].length-1).slice(1)}
+break;
+case 10:
 this.$ = [$$[$0-1], $$[$0]]
 break;
 }
 },
-table: [{3:1,4:2,6:3,7:$V0,10:$V1,11:6,12:$V2},{1:[3]},{5:[1,8]},o($V3,[2,2],{9:9,14:$V4,15:$V5}),{4:12,6:3,7:$V0,10:$V1,11:6,12:$V2},{7:[1,13],10:$V6,11:14,12:$V2},o($V7,[2,5]),o($V7,[2,7],{13:[1,16]}),{1:[2,1]},{10:$V6,11:17,12:$V2},o($V8,[2,10]),o($V8,[2,11]),{8:[1,18]},{4:19,6:3,7:$V0,10:$V1,11:6,12:$V2},o($V7,[2,9]),{10:$V6,11:14,12:$V2},o($V7,[2,8]),o($V7,[2,6]),{9:20,14:$V4,15:$V5},{8:[1,21]},{7:[1,22]},o($V3,[2,4]),{4:23,6:3,7:$V0,10:$V1,11:6,12:$V2},{8:[1,24]},o($V3,[2,3])],
+table: [{3:1,4:2,6:3,7:$V0,10:$V1,11:6,12:$V2},{1:[3]},{5:[1,8]},o($V3,[2,2],{9:9,14:$V4,15:$V5}),{4:12,6:3,7:$V0,10:$V1,11:6,12:$V2},{7:[1,13],10:$V6,11:14,12:$V2},o($V7,[2,6]),o($V7,[2,8],{13:[1,16]}),{1:[2,1]},{10:$V6,11:17,12:$V2},o($V8,[2,11]),o($V8,[2,12]),{8:[1,18]},{4:19,6:3,7:$V0,10:$V1,11:6,12:$V2},o($V7,[2,10]),{10:$V6,11:14,12:$V2},o($V7,[2,9]),o($V7,[2,7]),o($V3,[2,5],{9:20,14:$V4,15:$V5}),{8:[1,21]},{7:[1,22]},o($V3,[2,4]),{4:23,6:3,7:$V0,10:$V1,11:6,12:$V2},{8:[1,24]},o($V3,[2,3])],
 defaultActions: {8:[2,1]},
 parseError: function parseError(str, hash) {
     if (hash.recoverable) {
@@ -269,7 +272,7 @@ function isCalculate(expression) {
 //在Deferred中，resolve相当于正常的call, apply语句， reject相当于throw语句，otherwise相当于catch 语句，ensure相当于finally语句
 function parseExpression(expression) {
 
-    var            dfd = Deferred()
+    var dfd = Deferred()
 
     if(isCalculate(expression)) {
         parseCalculate(expression).then(function(result) {
