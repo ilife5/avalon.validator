@@ -6,6 +6,7 @@ function avalonConfig() {
 
 avalon.define("demo", function() {});
 
+/*
 describe("get fixtures use jasmine.getFixtures", function() {
     it("should get html from path", function() {
         var f = jasmine.getFixtures();
@@ -13,4 +14,4 @@ describe("get fixtures use jasmine.getFixtures", function() {
         f.load("test/index.html");
         avalon.scan();
     });
-});
+});*/

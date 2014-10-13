@@ -9,18 +9,18 @@
     <h1>Unit Test Results</h1>
     <table cellspacing="0" cellpadding="0" border="0">
       <tr class="overview">
-        <td colspan="3" title="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0">Browser: Firefox 32.0.0 (Mac OS X 10.9)</td>
+        <td colspan="3" title="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.101 Safari/537.36">Browser: Chrome 38.0.2125 (Mac OS X 10.9.2)</td>
       </tr>
       <tr class="overview">
-        <td colspan="3">Timestamp: 2014-10-11T11:56:52</td>
+        <td colspan="3">Timestamp: 2014-10-13T13:03:40</td>
       </tr>
       <tr>
         <td colspan="3">
-          10 tests / 
+          15 tests / 
           0 errors / 
-          1 failures / 
+          0 failures / 
           0 skipped / 
-          runtime: 2.032s
+          runtime: 3.069s
         </td>
       </tr>
       <tr class="header">
@@ -29,12 +29,12 @@
         <td>Suite / Results</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.005s</td>
+        <td>Passed in 0.013s</td>
         <td>[&apos;!&apos;, {name: &apos;number&apos;}] should be a expression</td>
         <td>isExpression</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.001s</td>
+        <td>Passed in 0.007s</td>
         <td>[{name: &apos;number&apos;}, &apos;&amp;&amp;&apos;, {name: &apos;max_len&apos;, value: &apos;10&apos;}] should be a expression</td>
         <td>isExpression</td>
       </tr>
@@ -44,7 +44,7 @@
         <td>isExpression</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.002s</td>
+        <td>Passed in 0.003s</td>
         <td>input.value = &apos;&apos;. The result of parsePattern({name: &apos;required&apos;}) should be false</td>
         <td>parsePattern</td>
       </tr>
@@ -53,41 +53,60 @@
         <td>input.value = &apos;123&apos;. The result of parsePattern({name: &apos;required&apos;}) should be true</td>
         <td>parsePattern</td>
       </tr>
-      <tr class="fail">
-        <td>Failed</td>
+      <tr class="pass">
+        <td>Passed in 2.991s</td>
         <td>a pattern can with a promise return value</td>
-        <td>
-          parsePattern
-          <br />Expected true to be false.
-@/Users/gaga/github/validator/test/parseExpression.test.js:155:13
-_post/</dfd.callback[method]@/Users/gaga/github/validator/vendor/deferred.js:78:37
-_fire@/Users/gaga/github/validator/vendor/deferred.js:100:21
-Deferred/</dfd[method]/<@/Users/gaga/github/validator/vendor/deferred.js:62:25
-Deferred.nextTick/observer</<@/Users/gaga/github/validator/vendor/deferred.js:172:21
-Deferred.nextTick/observer<@/Users/gaga/github/validator/vendor/deferred.js:171:17
-
-
-        </td>
+        <td>parsePattern</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0s</td>
+        <td>Passed in 0.001s</td>
         <td>Does not exist pattern should reject with message</td>
         <td>parsePattern</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.001s</td>
+        <td>Passed in 0.004s</td>
         <td>input.value = &apos;123&apos;. The pattern [&apos;required&apos;, &apos;&amp;&amp;&apos;, {name: &apos;numeric&apos;}] should be true</td>
         <td>parsePattern</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.001s</td>
+        <td>Passed in 0.002s</td>
         <td>input.value = &apos;string&apos;. The pattern [&apos;required&apos;, &apos;&amp;&amp;&apos;, {name: &apos;numeric&apos;}] should be false</td>
         <td>parsePattern</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.017s</td>
-        <td>should get html from path</td>
-        <td>get fixtures use jasmine.getFixtures</td>
+        <td>Passed in 0.001s</td>
+        <td>validate &lt;input&gt; should be null</td>
+        <td>validate</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.005s</td>
+        <td>validate &lt;input required&gt; should be false</td>
+        <td>validate</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.003s</td>
+        <td>validate &lt;input required value=123&gt; should be true</td>
+        <td>validate</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>validate &lt;input required value=123 type=email&gt; should be false</td>
+        <td>validate</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.002s</td>
+        <td>validate &lt;input required value=test@qq.com type=email&gt; should be true</td>
+        <td>validate</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.002s</td>
+        <td>validate &lt;input required value=test@qq.com type=emails&gt; should be true</td>
+        <td>validate</td>
+      </tr>
+      <tr class="system-out">
+        <td colspan="3"><strong>System output:</strong><br />Firefox 32.0.0 (Mac OS X 10.9) LOG: '没有找到相应的pattern：dateMozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0'
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: '没有找到相应的pattern：dateMozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.101 Safari/537.36'
+</td>
       </tr>
     </table>
     <hr/>
@@ -101,18 +120,18 @@ Deferred.nextTick/observer<@/Users/gaga/github/validator/vendor/deferred.js:171:
     <h1>Unit Test Results</h1>
     <table cellspacing="0" cellpadding="0" border="0">
       <tr class="overview">
-        <td colspan="3" title="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.101 Safari/537.36">Browser: Chrome 38.0.2125 (Mac OS X 10.9.2)</td>
+        <td colspan="3" title="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0">Browser: Firefox 32.0.0 (Mac OS X 10.9)</td>
       </tr>
       <tr class="overview">
-        <td colspan="3">Timestamp: 2014-10-11T11:56:52</td>
+        <td colspan="3">Timestamp: 2014-10-13T13:03:40</td>
       </tr>
       <tr>
         <td colspan="3">
-          10 tests / 
+          15 tests / 
           0 errors / 
-          1 failures / 
+          0 failures / 
           0 skipped / 
-          runtime: 2.046s
+          runtime: 2.031s
         </td>
       </tr>
       <tr class="header">
@@ -126,41 +145,32 @@ Deferred.nextTick/observer<@/Users/gaga/github/validator/vendor/deferred.js:171:
         <td>isExpression</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.003s</td>
+        <td>Passed in 0.001s</td>
         <td>[{name: &apos;number&apos;}, &apos;&amp;&amp;&apos;, {name: &apos;max_len&apos;, value: &apos;10&apos;}] should be a expression</td>
         <td>isExpression</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0s</td>
+        <td>Passed in 0.001s</td>
         <td>{name: &apos;max-len&apos;, value: &apos;5&apos;} should not be a expression</td>
         <td>isExpression</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.003s</td>
+        <td>Passed in 0.001s</td>
         <td>input.value = &apos;&apos;. The result of parsePattern({name: &apos;required&apos;}) should be false</td>
         <td>parsePattern</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.002s</td>
+        <td>Passed in 0.001s</td>
         <td>input.value = &apos;123&apos;. The result of parsePattern({name: &apos;required&apos;}) should be true</td>
         <td>parsePattern</td>
       </tr>
-      <tr class="fail">
-        <td>Failed</td>
+      <tr class="pass">
+        <td>Passed in 2.002s</td>
         <td>a pattern can with a promise return value</td>
-        <td>
-          parsePattern
-          <br />Expected true to be false.
-Error: Expected true to be false.
-    at Object.<anonymous> (/Users/gaga/github/validator/test/parseExpression.test.js:155:28)
-    at Object.dfd.callback.(anonymous function) (/Users/gaga/github/validator/vendor/deferred.js:78:48)
-    at Object._fire (/Users/gaga/github/validator/vendor/deferred.js:100:32)
-    at /Users/gaga/github/validator/vendor/deferred.js:62:31
-
-        </td>
+        <td>parsePattern</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.002s</td>
+        <td>Passed in 0s</td>
         <td>Does not exist pattern should reject with message</td>
         <td>parsePattern</td>
       </tr>
@@ -170,14 +180,43 @@ Error: Expected true to be false.
         <td>parsePattern</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.001s</td>
+        <td>Passed in 0.002s</td>
         <td>input.value = &apos;string&apos;. The pattern [&apos;required&apos;, &apos;&amp;&amp;&apos;, {name: &apos;numeric&apos;}] should be false</td>
         <td>parsePattern</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.026s</td>
-        <td>should get html from path</td>
-        <td>get fixtures use jasmine.getFixtures</td>
+        <td>Passed in 0.001s</td>
+        <td>validate &lt;input&gt; should be null</td>
+        <td>validate</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.004s</td>
+        <td>validate &lt;input required&gt; should be false</td>
+        <td>validate</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.002s</td>
+        <td>validate &lt;input required value=123&gt; should be true</td>
+        <td>validate</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.005s</td>
+        <td>validate &lt;input required value=123 type=email&gt; should be false</td>
+        <td>validate</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.002s</td>
+        <td>validate &lt;input required value=test@qq.com type=email&gt; should be true</td>
+        <td>validate</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.002s</td>
+        <td>validate &lt;input required value=test@qq.com type=emails&gt; should be true</td>
+        <td>validate</td>
+      </tr>
+      <tr class="system-out">
+        <td colspan="3"><strong>System output:</strong><br />Firefox 32.0.0 (Mac OS X 10.9) LOG: '没有找到相应的pattern：dateMozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0'
+</td>
       </tr>
     </table>
     <hr/>

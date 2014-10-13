@@ -13,8 +13,8 @@ function isExpression(expression) {
     return avalon.type(expression) === "array" && expression.length > 1
 }
 
-function getElementValue() {
-
+function getElementValue(control) {
+    return control.value
 }
 
 //判断expression的类型
@@ -29,8 +29,8 @@ function parsePattern(pattern) {
     if(isExpression(pattern)) {
         parseExpression.call(this, pattern).then(function(result) {
             dfd.resolve(result)
-        }, function() {
-            dfd.resolve(arguments)
+        }, function(err) {
+            dfd.reject(err)
         })
     } else {
         var validatorPattern = avalon.validatorPattern[pattern.name],
@@ -47,8 +47,8 @@ function parsePattern(pattern) {
                 result.then(function(result) {
                     //resolve
                     dfd.resolve(result)
-                }, function() {
-                    dfd.reject(arguments)
+                }, function(err) {
+                    dfd.reject(err)
                 })
             } else {
                 dfd.resolve(result)
@@ -67,9 +67,9 @@ function parseExpression(expressions) {
         parsePattern.call(this, expressions[1]).then(function(result) {
             //resolve 进行一元运算
             dfd.resolve(!result)
-        }, function() {
+        }, function(err) {
             //reject
-            dfd.reject(arguments)
+            dfd.reject(err)
         })
     } else {
         Deferred.all(parsePattern.call(this, expressions[0]), parsePattern.call(this, expressions[2])).then(function(results) {
@@ -79,9 +79,9 @@ function parseExpression(expressions) {
             } else {
                 dfd.resolve(results[0] || results[1])
             }
-        }, function() {
+        }, function(err) {
             //reject
-            dfd.reject(arguments)
+            dfd.reject(err)
         })
     }
 
@@ -100,37 +100,42 @@ function validate(control, form) {
         return
     }
 
+    var dfd = new Deferred()
+
     var $control = avalon(control),
         required = hasAttribute(control, "required"),
-        pattern = $control.attr("required"),
-        type
+        pattern = $control.attr("data-validator-pattern"),
+        type,
+        patternSeq = []
 
-    if(control.tagName.toLowerCase() === "input" && rh5control.test(control.type)) {
-        type = control.type
-    }
-
-    //拼装pattern
-    //检测元素是否有required属性
-    //如果有required属性，则添加required pattern
-    //如果没有required属性，则添加empty pattern
-
-
-    //type为submit reset file slider以及image元素没有验证性
     //pattern的获取顺序为required属性 --> type --> pattern
-    switch(control.tagName.toLowerCase()) {
-        case "input":
-
-            //如果为h5新增的控件，email|url|number|range|date|month|week|time|color，将该
-            if(rh5control.test(control.type)) {
-
-            }
-            break;
-        case "":
-            break;
+    if(control.tagName.toLowerCase() === "input" && rh5control.test(type = $control.attr("type"))) {
+        patternSeq.push(type)
     }
-    //调用语法分析器对控件的pattern进行分析
-    //调用语义解析器对语法进行执行，生成promise对象
-    return parseExpression(parser.parse(control.getAttribute("pattern")))
+    if(pattern) {
+        patternSeq.push(pattern)
+    }
+    if(required) {
+        patternSeq.unshift("required")
+    }
+
+    //如果一个元素不具有required，type以及pattern中的任意一项，不进行验证，直接返回
+    if(!required && !type && !pattern) {
+        return null
+    } else if(!required && getElementValue(control) === "") {
+        //如果一个元素不具有required属性，且其值为空，则验证通过
+        dfd.resolve(true)
+    } else {
+        //调用语法分析器对控件的pattern进行分析
+        //调用语义解析器对语法进行执行，生成promise对象
+        parsePattern(parser.parse(patternSeq.join("&&"))).then(function(result) {
+            dfd.resolve(result)
+        }, function(err) {
+            dfd.reject(err)
+        })
+    }
+
+    return dfd.promise
 
 }
 
@@ -197,3 +202,43 @@ describe("parsePattern", function() {
         })
     })
 });
+
+describe("validate", function() {
+    it("validate <input> should be null", function() {
+        var input = document.createElement("INPUT")
+        expect(validate(input)).toBe(null)
+    })
+    it("validate <input required> should be false", function() {
+        var input = document.createElement("INPUT")
+        input.setAttribute("required", "")
+        validate(input).then(function(result) {
+            expect(result).toBe(false)
+        })
+    })
+    it("validate <input required value=123> should be true", function() {
+        var input = document.createElement("INPUT")
+        input.setAttribute("required", "")
+        input.value = 123
+        validate(input).then(function(result) {
+            expect(result).toBe(true)
+        })
+    })
+    it("validate <input required value=123 type=email> should be false", function() {
+        var input = document.createElement("INPUT")
+        input.setAttribute("required", "")
+        input.setAttribute("type", "email")
+        input.value = 123
+        validate(input).then(function(result) {
+            expect(result).toBe(true)
+        })
+    })
+    it("validate <input required value=test@qq.com type=email> should be true", function() {
+        var input = document.createElement("INPUT")
+        input.setAttribute("required", "")
+        input.setAttribute("type", "email")
+        input.value = "test@qq.com"
+        validate(input).then(function(result) {
+            expect(result).toBe(true)
+        })
+    })
+})
