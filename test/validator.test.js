@@ -1,10 +1,7 @@
-function avalonConfig() {
-    avalon.config({
-        debug: false
-    });
-}
 
-avalon.define("demo", function() {});
+require(["avalon", "validator/avalon.validator", "ready!"], function() {
+
+})
 
 /*
 describe("get fixtures use jasmine.getFixtures", function() {

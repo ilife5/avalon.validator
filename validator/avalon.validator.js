@@ -1,4 +1,4 @@
-define(["avalon.getModel"], function(avalon) {
+define(["avalon.getModel", "validator/RuleParse", "validator/RulePattern", "validator/validate"], function(avalon) {
 
     var rword = /[^, ]+/g, //切割字符串为一个个小块，以空格或豆号分开它们，结合replace实现字符串的forEach
         defaults = {

@@ -1,3 +1,4 @@
+/*
 var rh5control = /^email|url|number|range|date|month|week|time|color$/
 
 //判断是否有某属性节点
@@ -88,12 +89,14 @@ function parseExpression(expressions) {
     return dfd.promise
 }
 
+*/
 /**
  * 对表单控件进行验证
  * 首先对表单元素的可验证性做区分，disabled状态的控件不予验证
  * @param control
  * @param form
- */
+ *//*
+
 function validate(control, form) {
     //判断控件的验证性
     if(control.disabled) {
@@ -241,4 +244,4 @@ describe("validate", function() {
             expect(result).toBe(true)
         })
     })
-})
+})*/

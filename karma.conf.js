@@ -15,16 +15,19 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        "./vendor/jquery.js",
-        "./vendor/avalon.js",
         "./vendor/*.js",
-        "./src/RulePattern.js",
-        "./src/RuleParse.js",
         {
             "pattern": "test/*.html",
             "included": false
         },
-        "test/*.js"
+        {
+            "pattern": "validator/*.js",
+            "included": false
+        },
+        "./avalon.js",
+        "./avalon.getModel.js",
+        "./deferred.js",
+        "./test/*.js"
     ],
 
     // list of files to exclude
