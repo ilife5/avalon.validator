@@ -72,12 +72,12 @@
   }
 */
 var parser = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,4],$V1=[1,5],$V2=[1,7],$V3=[5,8],$V4=[1,10],$V5=[1,11],$V6=[1,15],$V7=[5,8,14,15],$V8=[7,10,12];
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,3],$V1=[1,4],$V2=[1,6],$V3=[1,8],$V4=[1,9],$V5=[5,8,9,10];
 var parser = {trace: function trace() { },
 yy: {},
-symbols_: {"error":2,"expressions":3,"PATTERN":4,"EOF":5,"RULES":6,"(":7,")":8,"DOP":9,"NOT":10,"RULE":11,"RULENAME":12,"ARGS":13,"AND":14,"OR":15,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",7:"(",8:")",10:"NOT",12:"RULENAME",13:"ARGS",14:"AND",15:"OR"},
-productions_: [0,[3,2],[4,1],[4,7],[4,4],[4,3],[6,1],[6,3],[11,1],[11,2],[11,2],[9,1],[9,1]],
+symbols_: {"error":2,"expressions":3,"PATTERN":4,"EOF":5,"NOT":6,"(":7,")":8,"AND":9,"OR":10,"RULE":11,"RULENAME":12,"ARGS":13,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",6:"NOT",7:"(",8:")",9:"AND",10:"OR",12:"RULENAME",13:"ARGS"},
+productions_: [0,[3,2],[4,2],[4,3],[4,3],[4,3],[4,1],[11,1],[11,2]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -86,34 +86,28 @@ switch (yystate) {
 case 1:
 return $$[$0-1];
 break;
-case 2: case 6:
-this.$ = $$[$0]
+case 2:
+this.$ = [$$[$0-1], $$[$0]]
 break;
 case 3:
-this.$ = [$$[$0-5], $$[$0-3], $$[$0-1]]
-break;
-case 4:
-this.$ = [$$[$0-3], $$[$0-1]]
-break;
-case 5:
 this.$ = $$[$0-1]
 break;
-case 7:
+case 4: case 5:
 this.$ = [$$[$0-2], $$[$0-1], $$[$0]]
 break;
-case 8:
+case 6:
+this.$ = $$[$0]
+break;
+case 7:
 this.$ = {name:$$[$0]}
 break;
-case 9:
+case 8:
 this.$ = {name:$$[$0-1], value:$$[$0].slice(0,$$[$0].length-1).slice(1)}
-break;
-case 10:
-this.$ = [$$[$0-1], $$[$0]]
 break;
 }
 },
-table: [{3:1,4:2,6:3,7:$V0,10:$V1,11:6,12:$V2},{1:[3]},{5:[1,8]},o($V3,[2,2],{9:9,14:$V4,15:$V5}),{4:12,6:3,7:$V0,10:$V1,11:6,12:$V2},{7:[1,13],10:$V6,11:14,12:$V2},o($V7,[2,6]),o($V7,[2,8],{13:[1,16]}),{1:[2,1]},{10:$V6,11:17,12:$V2},o($V8,[2,11]),o($V8,[2,12]),{8:[1,18]},{4:19,6:3,7:$V0,10:$V1,11:6,12:$V2},o($V7,[2,10]),{10:$V6,11:14,12:$V2},o($V7,[2,9]),o($V7,[2,7]),o($V3,[2,5],{9:20,14:$V4,15:$V5}),{8:[1,21]},{7:[1,22]},o($V3,[2,4]),{4:23,6:3,7:$V0,10:$V1,11:6,12:$V2},{8:[1,24]},o($V3,[2,3])],
-defaultActions: {8:[2,1]},
+table: [{3:1,4:2,6:$V0,7:$V1,11:5,12:$V2},{1:[3]},{5:[1,7],9:$V3,10:$V4},{4:10,6:$V0,7:$V1,11:5,12:$V2},{4:11,6:$V0,7:$V1,11:5,12:$V2},o($V5,[2,6]),o($V5,[2,7],{13:[1,12]}),{1:[2,1]},{4:13,6:$V0,7:$V1,11:5,12:$V2},{4:14,6:$V0,7:$V1,11:5,12:$V2},o($V5,[2,2]),{8:[1,15],9:$V3,10:$V4},o($V5,[2,8]),o($V5,[2,4]),o($V5,[2,5]),o($V5,[2,3])],
+defaultActions: {7:[2,1]},
 parseError: function parseError(str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -258,84 +252,7 @@ parse: function parse(input) {
     }
     return true;
 }};
-
-
-//判断是否为计算表达式
-function isCalculate(expression) {
-    return avalon.type(expression) === "array" && expression.length > 1
-}
-
-//判断expression的类型
-//如果expression的类型为一元或者二元操作，包装为该操作结果的promise对象
-//在过程中，对操作符进行相应处理
-//如果expression的类型为表达式RULE，直接返回可以代表该RULE的promise对象
-//在Deferred中，resolve相当于正常的call, apply语句， reject相当于throw语句，otherwise相当于catch 语句，ensure相当于finally语句
-function parseExpression(expression) {
-
-    var dfd = Deferred()
-
-    if(isCalculate(expression)) {
-        parseCalculate(expression).then(function(result) {
-            dfd.resolve(result)
-        }, function() {
-            dfd.resolve(arguments)
-        })
-    } else {
-
-        var pattern = avalon.validatorPattern[expression.name],
-            result
-
-        if(!pattern) {
-            dfd.reject({
-                message: "没有找到相应的pattern：" + expression.name
-            })
-        } else {
-            result = pattern.validate(expression.value)
-
-            if(Deferred.isPromise(result)) {
-                result.then(function(result) {
-                    //resolve
-                    dfd.resolve(result)
-                }, function() {
-                    dfd.reject(arguments)
-                })
-            } else {
-                dfd.resolve(result)
-            }
-        }
-    }
-
-    return dfd.promise
-}
-
-function parseCalculate(calculateArr) {
-
-    var dfd = new Deferred()
-
-    if(calculateArr.length === 2) {
-        parseExpression(calculateArr[1]).then(function(result) {
-            //resolve 进行一元运算
-            dfd.resolve(!result)
-        }, function() {
-            //reject
-            dfd.reject(arguments)
-        })
-    } else {
-        Deferred.all(parseExpression(calculateArr[0]), parseExpression(calculateArr[2])).then(function(leftResult, rightResult) {
-            //resolve 进行二元运算
-            if(calculateArr[1] === "&&") {
-                dfd.resolve(leftResult && rightResult)
-            } else {
-                dfd.resolve(leftResult || rightResult)
-            }
-        }, function() {
-            //reject
-            dfd.reject(arguments)
-        })
-    }
-
-    return dfd.promise
-}/* generated by jison-lex 0.3.4 */
+/* generated by jison-lex 0.3.4 */
 var lexer = (function(){
 var lexer = ({
 
@@ -669,11 +586,11 @@ case 1:return 7;
 break;
 case 2:return 8;
 break;
-case 3:return 14;
+case 3:return 9;
 break;
-case 4:return 15;
+case 4:return 10;
 break;
-case 5:return 10;
+case 5:return 6;
 break;
 case 6:return 12;
 break;

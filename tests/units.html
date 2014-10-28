@@ -12,7 +12,7 @@
         <td colspan="3" title="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:33.0) Gecko/20100101 Firefox/33.0">Browser: Firefox 33.0.0 (Mac OS X 10.9)</td>
       </tr>
       <tr class="overview">
-        <td colspan="3">Timestamp: 2014-10-27T13:28:12</td>
+        <td colspan="3">Timestamp: 2014-10-28T14:28:55</td>
       </tr>
       <tr>
         <td colspan="3">
@@ -29,9 +29,26 @@
         <td>Suite / Results</td>
       </tr>
       <tr class="system-out">
-        <td colspan="3"><strong>System output:</strong><br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 123
-<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'debug: 正准备加载 http://localhost:9876/base/validator/validate.js'
-<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'debug: 正准备加载 http://localhost:9876/base/validator/avalon.validator.js'
+        <td colspan="3"><strong>System output:</strong><br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'debug: 正准备加载 http://localhost:9876/base/test/RuleParse.test.js'
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: 'debug: 正准备加载 http://localhost:9876/base/test/RuleParse.test.js'
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'debug: 正准备加载 http://localhost:9876/base/validator/RuleParse.js'
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'debug: 已成功加载 http://localhost:9876/base/test/RuleParse.test.js'
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'xxx', Object{name: 'xxx'}
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '!xxx', ['!', Object{name: 'xxx'}]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'xxx[123]', Object{name: 'xxx', value: '123'}
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '(xxx)', Object{name: 'xxx'}
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '!(xxx)', ['!', Object{name: 'xxx'}]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '(!xxx)', ['!', Object{name: 'xxx'}]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'a&&b', [Object{name: 'a'}, '&&', Object{name: 'b'}]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'a[1]&&b', [Object{name: 'a', value: '1'}, '&&', Object{name: 'b'}]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'xxx&&aaa&&bbb', [[Object{name: ...}, '&&', Object{name: ...}], '&&', Object{name: 'bbb'}]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '(aaa&&bbb) && (ccc&&ddd)', [[Object{name: ...}, '&&', Object{name: ...}], '&&', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '(aaa&&bbb) || (ccc&&ddd)', [[Object{name: ...}, '&&', Object{name: ...}], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '(aaa&&bbb) || (ccc&&ddd) || (ccc&&ddd)', [[[..., ..., ...], '||', [..., ..., ...]], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '(aaa&&bbb) || (ccc&&ddd) || (ccc&&ddd) || (ggg&&hhh)', [[[..., ..., ...], '||', [..., ..., ...]], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '(aaa&&bbb) && (ccc&&ddd) && (eee&&fff) || (ggg&&hhh)', [[[..., ..., ...], '&&', [..., ..., ...]], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '((aaa&&bbb||(iuo[123]||bbc[iop])) && (ccc&&ddd) && (eee&&fff[1234]) || (ggg&&hhh[xxxx])) || (aaa[1234]&&bbb) && (ccc&&ddd) && (eee&&fff) || (ggg&&hhh)', [[[..., ..., ...], '&&', [..., ..., ...]], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'debug: 已成功加载 http://localhost:9876/base/validator/RuleParse.js'
 </td>
       </tr>
     </table>
@@ -46,10 +63,10 @@
     <h1>Unit Test Results</h1>
     <table cellspacing="0" cellpadding="0" border="0">
       <tr class="overview">
-        <td colspan="3" title="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.104 Safari/537.36">Browser: Chrome 38.0.2125 (Mac OS X 10.9.2)</td>
+        <td colspan="3" title="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36">Browser: Chrome 38.0.2125 (Mac OS X 10.9.2)</td>
       </tr>
       <tr class="overview">
-        <td colspan="3">Timestamp: 2014-10-27T13:28:13</td>
+        <td colspan="3">Timestamp: 2014-10-28T14:28:55</td>
       </tr>
       <tr>
         <td colspan="3">
@@ -66,12 +83,44 @@
         <td>Suite / Results</td>
       </tr>
       <tr class="system-out">
-        <td colspan="3"><strong>System output:</strong><br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 123
-<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'debug: 正准备加载 http://localhost:9876/base/validator/validate.js'
-<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'debug: 正准备加载 http://localhost:9876/base/validator/avalon.validator.js'
-<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: 123
-<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: 'debug: 正准备加载 http://localhost:9876/base/validator/validate.js'
-<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: 'debug: 正准备加载 http://localhost:9876/base/validator/avalon.validator.js'
+        <td colspan="3"><strong>System output:</strong><br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'debug: 正准备加载 http://localhost:9876/base/test/RuleParse.test.js'
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: 'debug: 正准备加载 http://localhost:9876/base/test/RuleParse.test.js'
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'debug: 正准备加载 http://localhost:9876/base/validator/RuleParse.js'
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'debug: 已成功加载 http://localhost:9876/base/test/RuleParse.test.js'
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'xxx', Object{name: 'xxx'}
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '!xxx', ['!', Object{name: 'xxx'}]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'xxx[123]', Object{name: 'xxx', value: '123'}
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '(xxx)', Object{name: 'xxx'}
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '!(xxx)', ['!', Object{name: 'xxx'}]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '(!xxx)', ['!', Object{name: 'xxx'}]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'a&&b', [Object{name: 'a'}, '&&', Object{name: 'b'}]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'a[1]&&b', [Object{name: 'a', value: '1'}, '&&', Object{name: 'b'}]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'xxx&&aaa&&bbb', [[Object{name: ...}, '&&', Object{name: ...}], '&&', Object{name: 'bbb'}]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '(aaa&&bbb) && (ccc&&ddd)', [[Object{name: ...}, '&&', Object{name: ...}], '&&', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '(aaa&&bbb) || (ccc&&ddd)', [[Object{name: ...}, '&&', Object{name: ...}], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '(aaa&&bbb) || (ccc&&ddd) || (ccc&&ddd)', [[[..., ..., ...], '||', [..., ..., ...]], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '(aaa&&bbb) || (ccc&&ddd) || (ccc&&ddd) || (ggg&&hhh)', [[[..., ..., ...], '||', [..., ..., ...]], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '(aaa&&bbb) && (ccc&&ddd) && (eee&&fff) || (ggg&&hhh)', [[[..., ..., ...], '&&', [..., ..., ...]], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: '((aaa&&bbb||(iuo[123]||bbc[iop])) && (ccc&&ddd) && (eee&&fff[1234]) || (ggg&&hhh[xxxx])) || (aaa[1234]&&bbb) && (ccc&&ddd) && (eee&&fff) || (ggg&&hhh)', [[[..., ..., ...], '&&', [..., ..., ...]], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Firefox 33.0.0 (Mac OS X 10.9) LOG: 'debug: 已成功加载 http://localhost:9876/base/validator/RuleParse.js'
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: 'debug: 正准备加载 http://localhost:9876/base/validator/RuleParse.js'
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: 'debug: 已成功加载 http://localhost:9876/base/test/RuleParse.test.js'
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: 'xxx', Object{name: 'xxx'}
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: '!xxx', ['!', Object{name: 'xxx'}]
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: 'xxx[123]', Object{name: 'xxx', value: '123'}
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: '(xxx)', Object{name: 'xxx'}
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: '!(xxx)', ['!', Object{name: 'xxx'}]
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: '(!xxx)', ['!', Object{name: 'xxx'}]
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: 'a&&b', [Object{name: 'a'}, '&&', Object{name: 'b'}]
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: 'a[1]&&b', [Object{name: 'a', value: '1'}, '&&', Object{name: 'b'}]
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: 'xxx&&aaa&&bbb', [[Object{name: ...}, '&&', Object{name: ...}], '&&', Object{name: 'bbb'}]
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: '(aaa&&bbb) && (ccc&&ddd)', [[Object{name: ...}, '&&', Object{name: ...}], '&&', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: '(aaa&&bbb) || (ccc&&ddd)', [[Object{name: ...}, '&&', Object{name: ...}], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: '(aaa&&bbb) || (ccc&&ddd) || (ccc&&ddd)', [[[..., ..., ...], '||', [..., ..., ...]], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: '(aaa&&bbb) || (ccc&&ddd) || (ccc&&ddd) || (ggg&&hhh)', [[[..., ..., ...], '||', [..., ..., ...]], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: '(aaa&&bbb) && (ccc&&ddd) && (eee&&fff) || (ggg&&hhh)', [[[..., ..., ...], '&&', [..., ..., ...]], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: '((aaa&&bbb||(iuo[123]||bbc[iop])) && (ccc&&ddd) && (eee&&fff[1234]) || (ggg&&hhh[xxxx])) || (aaa[1234]&&bbb) && (ccc&&ddd) && (eee&&fff) || (ggg&&hhh)', [[[..., ..., ...], '&&', [..., ..., ...]], '||', [Object{name: ...}, '&&', Object{name: ...}]]
+<br />Chrome 38.0.2125 (Mac OS X 10.9.2) LOG: 'debug: 已成功加载 http://localhost:9876/base/validator/RuleParse.js'
 </td>
       </tr>
     </table>

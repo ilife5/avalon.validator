@@ -1,13 +1,10 @@
 //test validate/validate.js
-console.log(123)
-require(["./validator/validate"], function(validate) {
-    console.log(validate)
+define(["validator/validate"], function(validate) {
     describe("validate", function() {
-        it("validate <input> should be null", function() {
-            var input = document.createElement("INPUT")
+        /*it("validate <input> should be null", function() {
             expect(validate(input)).toBe(null)
-        })
-        it("validate <input required> should be false", function() {
+        })*/
+        /*it("validate <input required> should be false", function() {
             var input = document.createElement("INPUT")
             input.setAttribute("required", "")
             validate(input).then(function(result) {
@@ -39,7 +36,7 @@ require(["./validator/validate"], function(validate) {
             validate(input).then(function(result) {
                 expect(result).toBe(true)
             })
-        })
+        })*/
     })
 })
 

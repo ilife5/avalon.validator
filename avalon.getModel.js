@@ -1,4 +1,4 @@
-;(function() {
+define(["avalon"], function(avalon) {
     function getChildVM(expr, vm, strLen) {
         var t = vm, pre, _t;
         for (var i = 0, len = expr.length; i < len; i++) {
@@ -21,6 +21,9 @@
     // 比如 vm.aaa.bbb = {} ;
     // avalon.getModel("aaa.bbb", vmodels) ==> ["bbb", bbbVM, bbbVM所在的祖先VM（它位于vmodels中）]
     avalon.getModel = function(expr, vmodels){
+        if (!expr) {
+            return null;
+        }
         var str = expr.split('.'),
             strLen = str.length,
             last = str[strLen-1];
@@ -36,4 +39,5 @@
         }
         return null;
     }
-})()
+    return avalon;
+})

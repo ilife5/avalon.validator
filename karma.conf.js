@@ -15,7 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        "./vendor/*.js",
+        "./vendor/jquery.js",
+        "./vendor/jasmine-jquery.js",
         {
             "pattern": "test/*.html",
             "included": false
@@ -25,9 +26,19 @@ module.exports = function(config) {
             "included": false
         },
         "./avalon.js",
-        "./avalon.getModel.js",
-        "./deferred.js",
-        "./test/*.js"
+	{
+            "pattern": "./avalon.getModel.js",
+            "included": false
+        },
+        {  
+            "pattern": "./deferred.js",
+            "included": false
+        },
+        "./test/spec.js",
+        {
+            "pattern": "./test/*.js",
+            "included": false
+        }
     ],
 
     // list of files to exclude
@@ -76,6 +87,9 @@ module.exports = function(config) {
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: false,
+    
+    // If browser does not capture in given timeout [ms], kill it
+    captureTimeout: 20000,
     
     plugins : [
 	"karma-jasmine",
