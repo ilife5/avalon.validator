@@ -27,7 +27,7 @@ define(["avalon.getModel", "validator/validate", "deferred"], function(avalon, v
                     validate(element).then(function(result) {
                         options.onValidate.call(element, element, result)
                     }, function(err) {
-                        avalon.log("err", err)
+                        avalon.log(err)
                     })
                 })
             }

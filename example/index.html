@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div ms-controller="demo">
+    <h1>form表单支持的控件类型</h1>
+    <p>注意type为submit reset file slider以及image元素没有验证性</p>
+    <form ms-widget="validator">
+
+        <h2>email</h2>
+        <label>email<input type="email" required></label>
+
+        <h2>number</h2>
+        <label>number<input type="number" required></label>
+
+        <h2>minLength</h2>
+        <label>number<input type="number" data-validator-pattern="minLength[10]" required></label>
+
+    </form>
+</div>
+<script src="../avalon.js"></script>
+<script>
+    require(["validator/avalon.validator", "ready!"], function() {
+        avalon.validatorPattern.add("minLength", {
+            validate: function(value, length) {
+                return value.trim().length < length
+            },
+            message: "长度小于10"
+        })
+        avalon.define({
+            $id: "demo",
+            validator: {
+                onValidate: function(element, result) {
+                    if(result.result) {
+                        avalon(element).css({
+                            border: ""
+                        })
+                    } else {
+                        avalon(element).css({
+                            border: "1px red solid"
+                        })
+                    }
+                }
+            }
+        })
+        avalon.scan()
+    })
+</script>
+</body>
+</html>

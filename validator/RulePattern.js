@@ -15,12 +15,6 @@ define(["avalon"], function(avalon) {
                 return value !== ""
             }
         },
-        url: {
-            message: "",
-            validate: function(value) {
-
-            }
-        },
         empty: {
             message: "允许为空" ,
             validate: function(value) {
@@ -41,12 +35,10 @@ define(["avalon"], function(avalon) {
         }
     }
 
+    avalon.validatorPattern.number = avalon.validatorPattern.numeric
+
     avalon.validatorPattern.add = function(name, pattern) {
-        if(typeof func === void 0) {
-            return avalon.validatorPattern.name
-        } else {
-            avalon.validatorPattern[name] = pattern
-        }
+        avalon.validatorPattern[name] = pattern
     }
 
     return avalon
