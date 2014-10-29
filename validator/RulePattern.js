@@ -15,6 +15,12 @@ define(["avalon"], function(avalon) {
                 return value !== ""
             }
         },
+        url: {
+            message: "",
+            validate: function(value) {
+
+            }
+        },
         empty: {
             message: "允许为空" ,
             validate: function(value) {

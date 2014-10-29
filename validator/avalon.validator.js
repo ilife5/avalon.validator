@@ -1,48 +1,44 @@
-define(["avalon.getModel", "validator/RuleParse", "validator/RulePattern", "validator/validate"], function(avalon) {
+define(["avalon.getModel", "validator/validate", "deferred"], function(avalon, validate, Deferred) {
 
-    var rword = /[^, ]+/g, //切割字符串为一个个小块，以空格或豆号分开它们，结合replace实现字符串的forEach
-        defaults = {
-            "events": ["focus", "blur", "input"]
-        },
-        specialEventType = {
+    var specialEventType = {
             "focus": "focusin",
             "blur": "focusout"
         },
         focusinBubbles = "onfocusin" in document
 
-    avalon.bindingHandlers.validate = function(data, vmodels) {
+    var widget = avalon.ui.validator = function(form, data, vmodels) {
 
-        var form = data.element,
-            events = avalon.mix(true, defaults.events, ["input"]),
-            widgetName = "validate",
-            optVm
+        var options = data["validatorOptions"],
+            vmodel
 
-        //解析data.value，获取配置项，操作id
-        var args = data.value.match(rword) || [],
-            optName     //配置项属性名
-        if (args[0] === "$" || !args[0]) {
-            args[0] = widgetName + setTimeout("1")
-        }
-        data.value = args.join(",")
-        optName = args[1] || widgetName
-        optVm = avalon.getModel(optName, vmodels)
 
         //使用内部的vm提供调用接口
-        avalon.define(args[0], function(vm) {
 
-            /**
-             * 遍历elements，返回验证结果
-             */
-            vm.validate = function() {}
-        });
-
-        //构造与controls的通信机制
-        //一种通信是通过事件代理，在from上监听controls的事件
-        //另一种是form直接调用controls
-        eventBind(form, events, function(evt) {
-            evt = evt ? evt : window.event
-            console.log(evt.target.value)
+        vmodel = avalon.define({
+            $id: data["validatorId"],
+            validate: function() {},
+            $init: function() {
+                //构造与controls的通信机制
+                //一种通信是通过事件代理，在from上监听controls的事件
+                //另一种是form直接调用controls
+                eventBind(form, options.events, function(evt) {
+                    evt = evt ? evt : window.event
+                    var element = evt.target
+                    validate(element).then(function(result) {
+                        options.onValidate.call(element, element, result)
+                    }, function(err) {
+                        avalon.log("err", err)
+                    })
+                })
+            }
         })
+
+        return vmodel
+    }
+
+    widget.defaults = {
+        "events": ["focus", "blur", "input"],
+        "onValidate": avalon.noop
     }
 
     function eventBind(elem, events, handler) {

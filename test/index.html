@@ -8,7 +8,7 @@
 <div ms-controller="demo">
     <h1>form表单支持的控件类型</h1>
     <p>注意type为submit reset file slider以及image元素没有验证性</p>
-    <form ms-validate>
+    <form ms-widget="validator">
         <h2>checkbox</h2>
         <label>basketball<input type="checkbox" name="sports" value="basketball" required/></label>
         <label>football<input type="checkbox" name="sports" value="football"/></label>
@@ -73,8 +73,24 @@
 </div>
 <script src="../avalon.js"></script>
 <script>
-    require(["./test/spec.js"], function() {
-        console.log(arguments)
+    require(["validator/avalon.validator", "ready!"], function() {
+        avalon.define({
+            $id: "demo",
+            validator: {
+                onValidate: function(element, result) {
+                    if(result.result) {
+                        avalon(element).css({
+                            border: ""
+                        })
+                    } else {
+                        avalon(element).css({
+                            border: "1px red solid"
+                        })
+                    }
+                }
+            }
+        })
+        avalon.scan()
     })
 </script>
 </body>

@@ -1,10 +1,14 @@
 //test validate/validate.js
 define(["validator/validate"], function(validate) {
     describe("validate", function() {
-        /*it("validate <input> should be null", function() {
-            expect(validate(input)).toBe(null)
-        })*/
-        /*it("validate <input required> should be false", function() {
+        it("validate <input required> should be false", function() {
+            var input = document.createElement("INPUT")
+            input.setAttribute("required", "")
+            validate(input).then(function(result) {
+                expect(result).toBe(false)
+            })
+        })
+        it("validate <input required> should be false", function() {
             var input = document.createElement("INPUT")
             input.setAttribute("required", "")
             validate(input).then(function(result) {
@@ -36,7 +40,7 @@ define(["validator/validate"], function(validate) {
             validate(input).then(function(result) {
                 expect(result).toBe(true)
             })
-        })*/
+        })
     })
 })
 
