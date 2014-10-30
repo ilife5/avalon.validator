@@ -22,7 +22,7 @@ define(["avalon.getModel", "validator/validate", "deferred"], function(avalon, v
                 //一种通信是通过事件代理，在from上监听controls的事件
                 //另一种是form直接调用controls
                 eventBind(form, options.events, function(evt) {
-                    evt = evt ? evt : window.event
+                    evt = fixEvent(evt || window.event)
                     var element = evt.target
                     validate(element).then(function(result) {
                         options.onValidate.call(element, element, result)
@@ -30,6 +30,9 @@ define(["avalon.getModel", "validator/validate", "deferred"], function(avalon, v
                         avalon.log(err)
                     })
                 })
+            },
+            validate: function() {
+                //
             }
         })
 
@@ -80,13 +83,31 @@ define(["avalon.getModel", "validator/validate", "deferred"], function(avalon, v
         }, 200)
     }
 
-    /**
-     * 规则抽取
-     */
-    function getRules(elements) {
-        //分别获取required，type，以及pattern的值
-
-        return ""
+    function fixEvent(event) {
+        var ret = {}
+        for (var i in event) {
+            ret[i] = event[i]
+        }
+        var target = ret.target = event.srcElement
+        if (event.type.indexOf("key") === 0) {
+            ret.which = event.charCode != null ? event.charCode : event.keyCode
+        } else if (/mouse|click/.test(event.type)) {
+            var doc = target.ownerDocument || DOC
+            var box = doc.compatMode === "BackCompat" ? doc.body : doc.documentElement
+            ret.pageX = event.clientX + (box.scrollLeft >> 0) - (box.clientLeft >> 0)
+            ret.pageY = event.clientY + (box.scrollTop >> 0) - (box.clientTop >> 0)
+            ret.wheelDeltaY = ret.wheelDelta
+            ret.wheelDeltaX = 0
+        }
+        ret.timeStamp = new Date - 0
+        ret.originalEvent = event
+        ret.preventDefault = function() { //阻止默认行为
+            event.returnValue = false
+        }
+        ret.stopPropagation = function() { //阻止事件在DOM树中的传播
+            event.cancelBubble = true
+        }
+        return ret
     }
 
     return avalon
