@@ -11,9 +11,7 @@ define(["avalon.getModel", "validator/validate", "deferred"], function(avalon, v
         var options = data["validatorOptions"],
             vmodel
 
-
         //使用内部的vm提供调用接口
-
         vmodel = avalon.define({
             $id: data["validatorId"],
             validate: function() {},
