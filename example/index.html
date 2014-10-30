@@ -26,7 +26,7 @@
     require(["validator/avalon.validator", "ready!"], function() {
         avalon.validatorPattern.add("minLength", {
             validate: function(value, length) {
-                return value.trim().length < length
+                return value.trim().length <= length
             },
             message: "长度小于10"
         })

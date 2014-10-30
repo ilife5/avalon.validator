@@ -89,9 +89,19 @@ define(["avalon", "deferred", "validator/RuleParse", "validator/RulePattern"], f
             Deferred.all(parsePattern.call(this, expressions[0]), parsePattern.call(this, expressions[2])).then(function(results) {
                 //resolve 进行二元运算
                 if(expressions[1] === "&&") {
+                    var failResults = results.filter(function(r) {
+                        return !r.result
+                    }), result = true,
+                        message = ""
+
+                    if(failResults.length > 0) {
+                        message = failResults[0].message
+                        result = false
+                    }
+
                     dfd.resolve({
-                        result: results[0].result && results[1].result,
-                        message: results[0].message + "并且" + results[1].message
+                        result: result,
+                        message: message
                     })
                 } else {
                     dfd.resolve({
