@@ -26,7 +26,7 @@ module.exports = function(config) {
             "included": false
         },
         "./avalon.js",
-	{
+	    {
             "pattern": "./avalon.getModel.js",
             "included": false
         },
@@ -81,7 +81,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox'],
+    browsers: ['Chrome'],
 
 
     // Continuous Integration mode

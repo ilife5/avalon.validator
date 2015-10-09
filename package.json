@@ -13,7 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "chai": "^1.9.1",
-    "karma": "^0.12.23",
+    "karma": "^0.13.10",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "*",
     "karma-doc-reporter": "0.0.1",

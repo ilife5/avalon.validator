@@ -32,6 +32,12 @@ define(["avalon"], function(avalon) {
             validate: function(value) {
                 return remail.test(value)
             }
+        },
+        word: {
+            message: "只允许字母或者数字",
+            validate: function(value) {
+                return alphanumeric.test(value)
+            }
         }
     }
 
