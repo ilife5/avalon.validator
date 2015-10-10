@@ -12,15 +12,15 @@
         <td colspan="3" title="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36">Browser: Chrome 45.0.2454 (Mac OS X 10.10.2)</td>
       </tr>
       <tr class="overview">
-        <td colspan="3">Timestamp: 2015-10-09T12:09:17</td>
+        <td colspan="3">Timestamp: 2015-10-10T02:01:27</td>
       </tr>
       <tr>
         <td colspan="3">
-          8 tests / 
+          9 tests / 
           0 errors / 
           0 failures / 
           0 skipped / 
-          runtime: 0.168s
+          runtime: 0.082s
         </td>
       </tr>
       <tr class="header">
@@ -29,27 +29,27 @@
         <td>Suite / Results</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.049s</td>
+        <td>Passed in 0.011s</td>
         <td>validate &lt;input required&gt; should be false</td>
         <td>validate</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.008s</td>
+        <td>Passed in 0.004s</td>
         <td>validate &lt;input required&gt; should be false</td>
         <td>validate</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.005s</td>
+        <td>Passed in 0.003s</td>
         <td>validate &lt;input required value=123&gt; should be true</td>
         <td>validate</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.078s</td>
+        <td>Passed in 0.029s</td>
         <td>validate &lt;input required value=123 type=email&gt; should be false</td>
         <td>validate</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.007s</td>
+        <td>Passed in 0.006s</td>
         <td>validate &lt;input required value=test@qq.com type=email&gt; should be true</td>
         <td>validate</td>
       </tr>
@@ -59,13 +59,18 @@
         <td>validate</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.007s</td>
+        <td>Passed in 0.008s</td>
         <td>validate &lt;input required value=123 data-validator-pattern=email||numeric&gt; should be true</td>
         <td>validate</td>
       </tr>
       <tr class="pass">
         <td>Passed in 0.007s</td>
         <td>validate &lt;input value=123 data-validator-pattern=email&amp;&amp;(numeric||word)&gt; should be true</td>
+        <td>validate</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.007s</td>
+        <td>validate &lt;input value=123 type=email data-validator-pattern=numeric||word&gt; should be false</td>
         <td>validate</td>
       </tr>
       <tr class="system-out">

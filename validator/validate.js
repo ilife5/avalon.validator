@@ -144,7 +144,7 @@ define(["avalon", "deferred", "validator/RuleParse", "validator/RulePattern"], f
             patternSeq.push(type)
         }
         if(pattern) {
-            patternSeq.push(pattern)
+            patternSeq.push('(' + pattern + ')')
         }
         if(required) {
             patternSeq.unshift("required")

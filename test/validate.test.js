@@ -76,6 +76,16 @@ define(["validator/validate"], function(validate, RuleParse) {
                 done()
             })
         })
+        it("validate <input value=123 type=email data-validator-pattern=numeric||word> should be false", function(done) {
+            var input = document.createElement("INPUT")
+            input.setAttribute("type", "email")
+            input.setAttribute("data-validator-pattern", "numeric||word")
+            input.value = "123"
+            validate(input).then(function(result) {
+                expect(result.result).toBe(false)
+                done()
+            })
+        })
     })
 })
 
