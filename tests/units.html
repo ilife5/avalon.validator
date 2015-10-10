@@ -12,15 +12,15 @@
         <td colspan="3" title="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36">Browser: Chrome 45.0.2454 (Mac OS X 10.10.2)</td>
       </tr>
       <tr class="overview">
-        <td colspan="3">Timestamp: 2015-10-10T02:01:27</td>
+        <td colspan="3">Timestamp: 2015-10-10T03:43:27</td>
       </tr>
       <tr>
         <td colspan="3">
-          9 tests / 
+          10 tests / 
           0 errors / 
           0 failures / 
           0 skipped / 
-          runtime: 0.082s
+          runtime: 0.088s
         </td>
       </tr>
       <tr class="header">
@@ -29,7 +29,7 @@
         <td>Suite / Results</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.011s</td>
+        <td>Passed in 0.008s</td>
         <td>validate &lt;input required&gt; should be false</td>
         <td>validate</td>
       </tr>
@@ -39,17 +39,17 @@
         <td>validate</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.003s</td>
+        <td>Passed in 0.004s</td>
         <td>validate &lt;input required value=123&gt; should be true</td>
         <td>validate</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.029s</td>
+        <td>Passed in 0.031s</td>
         <td>validate &lt;input required value=123 type=email&gt; should be false</td>
         <td>validate</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.006s</td>
+        <td>Passed in 0.007s</td>
         <td>validate &lt;input required value=test@qq.com type=email&gt; should be true</td>
         <td>validate</td>
       </tr>
@@ -59,7 +59,7 @@
         <td>validate</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0.008s</td>
+        <td>Passed in 0.006s</td>
         <td>validate &lt;input required value=123 data-validator-pattern=email||numeric&gt; should be true</td>
         <td>validate</td>
       </tr>
@@ -73,6 +73,11 @@
         <td>validate &lt;input value=123 type=email data-validator-pattern=numeric||word&gt; should be false</td>
         <td>validate</td>
       </tr>
+      <tr class="pass">
+        <td>Passed in 0.007s</td>
+        <td>validate &lt;input value=123 type=email data-validator-pattern=(numeric||word)&gt; should be false</td>
+        <td>validate</td>
+      </tr>
       <tr class="system-out">
         <td colspan="3"><strong>System output:</strong><br />Chrome 45.0.2454 (Mac OS X 10.10.2) LOG: 'debug: 正准备加载 http://localhost:9876/base/test/validate.test.js'
 <br />Chrome 45.0.2454 (Mac OS X 10.10.2) LOG: 'debug: 正准备加载 http://localhost:9876/base/validator/validate.js'
@@ -82,8 +87,8 @@
 <br />Chrome 45.0.2454 (Mac OS X 10.10.2) LOG: 'debug: 正准备加载 http://localhost:9876/base/validator/RulePattern.js'
 <br />Chrome 45.0.2454 (Mac OS X 10.10.2) LOG: 'debug: 已成功加载 http://localhost:9876/base/validator/validate.js'
 <br />Chrome 45.0.2454 (Mac OS X 10.10.2) LOG: 'debug: 已成功加载 http://localhost:9876/base/deferred.js'
-<br />Chrome 45.0.2454 (Mac OS X 10.10.2) LOG: 'debug: 已成功加载 http://localhost:9876/base/validator/RuleParse.js'
 <br />Chrome 45.0.2454 (Mac OS X 10.10.2) LOG: 'debug: 已成功加载 http://localhost:9876/base/validator/RulePattern.js'
+<br />Chrome 45.0.2454 (Mac OS X 10.10.2) LOG: 'debug: 已成功加载 http://localhost:9876/base/validator/RuleParse.js'
 </td>
       </tr>
     </table>
